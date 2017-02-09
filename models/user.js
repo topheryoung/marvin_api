@@ -8,12 +8,9 @@ const usersSchema = new Schema({
 	email: String,
 	password: String,
 	marvin_controls: {
-		type: Array,
-		default: {
-			balance: 10,
-			rockets: 7,
-			bombs: 5
-		}
+		balance: {type: Number, default: 10},
+		rockets: {type: Number, default: 7},
+		bombs: {type: Number, default: 5}
 	}
 });
 
