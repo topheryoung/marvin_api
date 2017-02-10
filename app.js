@@ -15,7 +15,7 @@ if (app.get('env') == 'development') {
 	mongoose.connect('mongodb://localhost/marvin');
 }
 if (app.get('env') == 'production') {
-	mongoose.connect('mongodb://heroku_d61v388l:shilmjov845d87i5fap8gh38k5@ds149049.mlab.com:49049/heroku_d61v388l');
+	mongoose.connect(process.env.MONGODB_URI);
 }
 
 
