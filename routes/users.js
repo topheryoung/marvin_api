@@ -11,9 +11,9 @@ router
 	})
 	.get('/users/:userId', (req, res, next) => {
 		mongoose.model('users')
-			.find({_id: ObjectID(req.params.userId)}, (err, result) => {
+			.findOne({_id: ObjectID(req.params.userId)}, (err, result) => {
 				if(err) { console.log(err)}
-				if(!result.length) { res.status(404).send("No matches found")}
+				if(!result) { res.status(404).send("No matches found")}
 				else { res.send(result)}
 			})
 	})
