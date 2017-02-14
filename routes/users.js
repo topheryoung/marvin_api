@@ -30,7 +30,33 @@ router
 				res.send(result)
 			})
 	})
-	.post('/users/marvincontrols/reset', (req, res, next) => {
+	.post('/users/:userId/rockets/:newRockets', (req, res, next) => {
+		mongoose.model('users')
+			.findByIdAndUpdate(ObjectID(req.params.userId), {$set: {'marvin_controls.rockets': req.params.newRockets}}, {new: true}, (err, result) => {
+				if(err) { console.log(err)}
+				res.send(result)
+			})
+	})
+	.post('/users/:userId/bombs/:newBombs', (req, res, next) => {
+		mongoose.model('users')
+			.findByIdAndUpdate(ObjectID(req.params.userId), {$set: {'marvin_controls.bombs': req.params.newBombs}}, {new: true}, (err, result) => {
+				if(err) { console.log(err)}
+				res.send(result)
+			})
+	})
+	.post('/marvincontrols/resetBalance', (req, res, next) => {
+		mongoose.model('users')
+			.update(
+				{},
+				{'marvin_controls.balance': 10 },
+				{new: true, multi: true, setDefaultsOnInsert: true, safe: true, upsert: true},
+				(err, result) => {
+					if(err) { console.log(err)}
+					res.send(result)
+				}
+			)
+	})
+	.post('/marvincontrols/reset', (req, res, next) => {
 		mongoose.model('users')
 			.update(
 				{},
